@@ -14,7 +14,6 @@ The goal of this project is to develop a Python program that makes use of the Py
 
 
 ### Repository Links
-- [GitHub]([https://github.com/sky09998/WineQualityApplication](https://github.com/Shiva-prakash-perumal/Aws_EMR_EC2_Wine_Quality_Prediction/))
 - [Docker Repository](https://hub.docker.com/repository/docker/sp3244/winequality/general)
 
 ### AWS Configuration
