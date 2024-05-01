@@ -39,6 +39,10 @@ The goal of this project is to develop a Python program that makes use of the Py
 Run the training and prediction processes using the following commands:
 ```bash
 spark-submit WineQualityTrainingAndPrediction.py --train
+```
+
+
+```bash
 spark-submit WineQualityTrainingAndPrediction.py --predict
 ```
 ### Docker Implementation
