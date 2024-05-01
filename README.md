@@ -1,80 +1,59 @@
 # CS643 - Programming Assignment 2
-## Wine Quality Prediction ML Model
+## Machine Learning Model for Predicting Wine Quality
 
-This project develops a Python application leveraging the PySpark interface on an AWS Elastic MapReduce (EMR) cluster. The goal is to train a machine learning model on EC2 instances to predict wine quality using public datasets. Docker is utilized to deploy a containerized version of the model.
+### UCID: sp3244 
+### Name: Shiva Prakash Perumal
 
-### Primary Python Source File
+### Project Overview
+The goal of this project is to develop a Python program that makes use of the PySpark interface. An Elastic MapReduce (EMR) cluster from Amazon Web Services (AWS) hosts the application. Its primary objective is to use publicly available data to train a machine learning model in parallel on EC2 instances to predict wine quality. The model is used to forecast wine quality after training. The trained machine learning model's container image is created using Docker, which streamlines the deployment procedure.
 
-- `WineQualityTrainingAndPrediction.py`: This script reads the training dataset from S3, trains the model using Logistic Regression and Decision Tree Classifier on an EMR Spark cluster, and selects the model with the best F1 score. It then executes predictions on test data stored in S3, printing the F1 score to assess accuracy.
+### Main Python Script
+**wine_quility_prediction.py:**:
+  if given ‘train’ as a parameter, it Trains the model in parallel on an EMR Spark cluster by reading the training dataset from S3. After training, the model can be run via S3 on test data that has been supplied. The trained model is kept in the S3 bucket by the program.
+  If given ‘--predict’ we use a pre-existing test data file to run the trained model. As a measure of the trained model's correctness, this application prints the F1 score.
+
 
 ### Repository Links
-
-- [GitHub Repository](https://github.com/sky09998/WineQualityApplication)
-- [Docker Hub Repository](https://hub.docker.com/repository/docker/sky09998/winequalityapplication/)
+- [GitHub]([https://github.com/sky09998/WineQualityApplication](https://github.com/Shiva-prakash-perumal/Aws_EMR_EC2_Wine_Quality_Prediction/))
+- [Docker Repository](https://hub.docker.com/repository/docker/sp3244/winequality/general)
 
 ### AWS Configuration
 
 #### Amazon S3
-- Create a bucket and upload the training and validation datasets.
-- Upload `WineQualityTrainingAndPrediction.py`.
-- Create a folder named `model` to store the best model from training.
+- **Setup**: Create a bucket and upload the training and validation datasets, along with the `WineQualityTrainingAndPrediction.py` script.
+- **Model Storage**: Create a `model` folder within the bucket to store the best performing model from training.
 
 #### Amazon EMR
-Images here
 
 #### EC2 Configuration
-- Choose the Master EC2 instance from your cluster setup.
-- Add an inbound rule to the security group for SSH access from your specified custom IP.
-- Log in to the Master EC2 instance using PowerShell, utilizing the Public DNS with the SSH command authenticated by the previously created EC2 Key pair.
-- Configure AWS Credentials and AWS Session Token.
-- Run initial setup commands:
-  `aws s3api get-object --bucket winequalityapplication --key init.sh /home/hadoop/init.sh`
-
-  `export AWS_ACCESS_KEY_ID=<your-access-key>`
-
-  `export AWS_SECRET_ACCESS_KEY=<your-secret-key>`
-
-  `sh init.sh`
+- **Instance Selection**: Choose the Master EC2 instance from your cluster setup.
+- **Security**: Update the security group to allow SSH access from your specific IP.
+- **Access**: Connect to the Master EC2 instance using SSH via PowerShell, authenticated with your EC2 Key pair.
+- **AWS Setup**: Configure AWS Credentials and Session Token, and run initial setup commands:
+  `aws s3api get-object --bucket sp3244wineapplication --key initialize.sh /home/hadoop/initialize.sh`
+  `export acccess=<your-access-key>`
+  `export secret=<your-secret-key>`
+  `initialize init.sh`
 
 
-### Code Implementation
-
+### Code Execution
+Run the training and prediction processes using the following commands:
 ```bash
 spark-submit WineQualityTrainingAndPrediction.py --train
-```
-```bash
 spark-submit WineQualityTrainingAndPrediction.py --predict
 ```
-## Docker Implementation
+### Docker Implementation
+- Create the Dockerfile
+- Create a Docker Repository
+- Build the Docker Image:
+  `docker build -t winequality .`
+- Tag the Docker Image:
+  `docker tag winequality sp3244/winequality:latest `
+- Push the Docker Image to Docker Hub: `docker push sp3244/winequality:latest`
 
-### Steps to Create and Manage Docker Images
+### Docker Execution
 
-1. **Create the Dockerfile**
-   - Prepare the Dockerfile with the required configurations and dependencies.
+- Pull the Docker Image: `docker pull sp3244/winequality`
+- Run the Docker Image: `docker run -v /Users/avi/Desktop/study/Aws_EMR_EC2_Wine_Quality_Prediction/ValidationDataset.csv:/app/ValidationDataset.csv  -ti sp3244/winequality:latest ValidationDataset.csv --predict`
 
-2. **Create a Docker Repository**
-   - Navigate to your Docker profile and create a repository named `mlapplication_pa2`.
-
-3. **Build the Docker Image**
-   - Run the following command to build your Docker image:
-     ```
-     docker build -t mlapplication .
-     ```
-
-4. **Tag the Docker Image**
-   - After building the image, tag it for pushing to Docker Hub:
-     ```
-     docker tag mlapplication username/mlapplication_pa2
-     ```
-
-5. **Push the Docker Image to Docker Hub**
-   - Push the tagged image to your Docker Hub repository:
-     ```
-     docker push username/mlapplication_pa2
-     ```
-
-6. **Pull the Docker Image**
-   - When you need to pull the image from Docker Hub, use:
-     ```
-     docker pull username/mlapplication_pa2
-     ```
+  
