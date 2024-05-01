@@ -23,6 +23,7 @@ The goal of this project is to develop a Python program that makes use of the Py
 - **Model Storage**: Create a `model` folder within the bucket to store the best performing model from training.
 
 #### Amazon EMR
+<img width="1512" alt="Screenshot 2024-05-01 at 10 35 56 AM" src="https://github.com/Shiva-prakash-perumal/Aws_EMR_EC2_Wine_Quality_Prediction/assets/36128062/fb36eaf9-45c6-460f-9610-b10e0c464c61">
 
 #### EC2 Configuration
 - **Instance Selection**: Choose the Master EC2 instance from your cluster setup.
