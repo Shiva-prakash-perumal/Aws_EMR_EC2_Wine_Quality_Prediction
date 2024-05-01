@@ -58,11 +58,11 @@ The goal of this project is to develop a Python program that makes use of the Py
 ### Code Execution
 Run the training and prediction processes using the following commands:
 ```bash
-spark-submit WineQualityTrainingAndPrediction.py --train
+spark-submit WineQualityTrainingAndPrediction.py train
 ```
 
 ```bash
-spark-submit WineQualityTrainingAndPrediction.py --predict
+python wine_quality_prediction.py predict
 ```
 ### Docker Implementation
 - Create the Dockerfile
