@@ -1,9 +1,6 @@
 # CS643 - Programming Assignment 2
 ## Machine Learning Model for Predicting Wine Quality
 
-### UCID: sp3244 
-### Name: Shiva Prakash Perumal
-
 ### Project Overview
 The goal of this project is to develop a Python program that makes use of the PySpark interface. An Elastic MapReduce (EMR) cluster from Amazon Web Services (AWS) hosts the application. Its primary objective is to use publicly available data to train a machine learning model in parallel on EC2 instances to predict wine quality. The model is used to forecast wine quality after training. The trained machine learning model's container image is created using Docker, which streamlines the deployment procedure.
 
